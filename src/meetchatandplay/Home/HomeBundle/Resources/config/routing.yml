@@ -1,0 +1,11 @@
+meetchatandplay_home_homepage:
+    path:     /
+    defaults: { _controller: meetchatandplayHomeHomeBundle:Home:index }
+
+meetchatandplay_meet_homepage:
+    path:     /meet
+    defaults: { _controller: meetchatandplayHomeHomeBundle:Home:indexMeet }
+
+meetchatandplay_meet_disconnection:
+    path:     /meet/deconnexion/{pseudo}/{mot_de_passe}
+    defaults: { _controller: meetchatandplayHomeHomeBundle:Home:disconnectionMeet, pseudo: null, mot_de_passe: null  }

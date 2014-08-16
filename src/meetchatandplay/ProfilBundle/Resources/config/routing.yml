@@ -1,0 +1,7 @@
+meetchatandplay_meet_mon_profil:
+    path:     /meet/profil/
+    defaults: { _controller: meetchatandplayProfilBundle:Profil:monProfil }
+
+meetchatandplay_meet_autre_profil:
+    path:     /meet/profil/{pseudo}
+    defaults: { _controller: meetchatandplayProfilBundle:Profil:autreProfil, pseudo: null }

@@ -1,0 +1,8 @@
+meetchatandplay_profil:
+    resource: "@meetchatandplayProfilBundle/Resources/config/routing.yml"
+    prefix:   /
+
+meetchatandplay_home_home:
+    resource: "@meetchatandplayHomeHomeBundle/Resources/config/routing.yml"
+    prefix:   /
+

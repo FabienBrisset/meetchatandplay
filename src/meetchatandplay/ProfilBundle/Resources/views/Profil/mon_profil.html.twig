@@ -1,0 +1,181 @@
+{% extends "meetchatandplayHomeHomeBundle::layout_meet.html.twig" %}
+
+{% block title %}
+ {{ parent() }}
+{% endblock %}
+
+{% block body_content %}
+	<table border = "1" width = "150px" height = "150px" style = "margin-left: 15px; position: fixed;">
+		<tr>
+			<td>
+				{% set limit = date|date("i") - 10 %}
+				{% if (user.meetDerniereConnexion|date("d/m/Y") is sameas(date|date("d/m/Y"))) and (user.meetDerniereConnexion|date("H") is sameas(date|date("H"))) and (user.meetDerniereConnexion|date("i") > limit) %}
+					<span id = "connecte" style = "position: fixed; margin-left: 120px; margin-top: 115px; font-size: 12px;"><ul style = "font-size: 30px;"><li>&nbsp;</li></ul></span>
+				{% endif %}
+				{% if user.pseudo is not sameas("SirGladius") and user.meetPhotoProfil is null %}
+					<center>
+						<img src='{{ asset("img/heart.jpg") }}' width = "146px" height = "146px" }}' />
+					</center>
+				{% else %}
+					{% if user.pseudo is sameas("SirGladius") and user.meetPhotoProfil is not null %}
+						<center>
+							<img src='{{ asset("img/heart.jpg") }}' width = "146px" height = "146px" }}' />
+						</center>
+					{% else %}
+						<center>
+							<img src='{{ asset("img/Fabien.jpg") }}' width = "146px" height = "146px" />
+						</center>
+					{% endif %}
+				{% endif %}
+			</td>
+		</tr>
+	</table>
+	<table border = "1" width = "816px" height = "150px" style = "margin-left: 165px;">
+		<tr>
+			<td>
+				{% if user.pseudo is not sameas("SirGladius") and user.meetPhotoCouverture is null %}
+					<center>
+						<img src='{{ asset("img/come_and_meet_me.jpg") }}' width = "812px" height = "146px" }}' />
+					</center>
+				{% else %}
+					{% if user.pseudo is sameas("SirGladius") and user.meetPhotoCouverture is not null %}
+						<center>
+							<img src='{{ asset("img/come_and_meet_me.jpg") }}' width = "812px" height = "146px" }}' />
+						</center>
+					{% else %}
+						<center>
+							<img src='{{ asset("img/Couverture_Fabien.jpg") }}' width = "812px" height = "146px" />
+						</center>
+					{% endif %}
+				{% endif %}
+			</td>
+		</tr>
+	</table>
+	<table border = "1" width = "150px" height = "335px" style = "margin-left: 15px; position: fixed;">
+		<tr>
+			<td>
+				<center>
+					<h5><b style = "font-family: Segoe Script; color:darkblue;" title = "{{ user.pseudo }}">{{ user.pseudo }}</b></h5>
+					<div style = "margin-top: 15px;"></div>
+					{% if user.pseudo is not sameas("SirGladius") %}
+						<img class = "image_grade_profile" src='{{ asset("img/"~user.meetGradeLienImage~".png") }}' title="{{ user.meetGrade }} - {{ user.meetPoints }} points Meet obtenus" />
+					{% else %}
+						<img class = "image_grade_profile" src='{{ asset("img/"~user.meetGradeLienImage~"_Createur.png") }}' title="{{ user.meetGrade }} Créateur - {{ user.meetPoints }} points Meet obtenus" />
+					{% endif %}<br>
+					<div style = "margin-top: 25px;"></div>
+					<b>Médailles obtenues</b><br>
+					<div style = "margin-top: 8px;"></div>
+					<img class = "medaille" src='{{ asset("img/medaille.png") }}' title="" style = "margin-right: 5px;"/>
+					<img class = "medaille" src='{{ asset("img/medaille.png") }}' title="" style = "margin-right: 5px;" />
+					<img class = "medaille" src='{{ asset("img/medaille.png") }}' title="" /><br>
+					<img class = "medaille" src='{{ asset("img/medaille.png") }}' title="" style = "margin-right: 5px;"/>
+					<img class = "medaille" src='{{ asset("img/medaille.png") }}' title="" style = "margin-right: 5px;" />
+					<img class = "medaille" src='{{ asset("img/medaille.png") }}' title="" /><br>
+					<img class = "medaille" src='{{ asset("img/medaille.png") }}' title="" style = "margin-right: 5px;"/>
+					<img class = "medaille" src='{{ asset("img/medaille.png") }}' title="" style = "margin-right: 5px;" />
+					<img class = "medaille" src='{{ asset("img/medaille.png") }}' title="" /><br>
+					<div style = "margin-top: 25px;"></div>
+					<b>Dernière connexion</b>
+					<div style = "margin-top: 8px;"></div>
+					{% set limit = date|date("i") - 10 %}
+					{% set leave = user.meetDerniereConnexion|date("i") + 10 %}
+					{% if (user.meetDerniereConnexion|date("d/m/Y") is sameas(date|date("d/m/Y"))) and (user.meetDerniereConnexion|date("H") is sameas(date|date("H"))) and (user.meetDerniereConnexion|date("i") > limit) %}
+						<font color = "red">Connecté</font>
+					{% else %}
+						<font color = "red">{{ user.meetDerniereConnexion|date("d/m/Y") }} à {{ user.meetDerniereConnexion|date("H") }}:{{ leave }}</font>
+					{% endif %}
+				</center>
+			</td>
+		</tr>
+	</table>
+	<table border = "1" width = "816px" height = "335px" style = "margin-left: 165px;">
+		<tr>
+			<td>
+				<div id="tabs">
+					<ul>
+						<li><a href="#tabs-1">&nbsp;&nbsp;&nbsp;&nbsp;Informations&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+						<li><a href="#tabs-2">&nbsp;&nbsp;&nbsp;&nbsp;Photos&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+						<li><a href="#tabs-3">&nbsp;&nbsp;&nbsp;&nbsp;Vidéos&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+						<li><a href="#tabs-4">&nbsp;&nbsp;&nbsp;&nbsp;Amis&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+						<li><a href="#tabs-5">&nbsp;&nbsp;&nbsp;Meets&nbsp;&nbsp;&nbsp;</a></li>
+						<li><a href="#tabs-6">&nbsp;&nbsp;&nbsp;&nbsp;Friendly Meets&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+					</ul>
+					<div id="tabs-1" style = "min-height: 283px;">
+						<center>
+							<p>
+								<table border = "0" width = "807px">
+									<tr>
+										<td>
+											<center>
+												<div id="tabs2" style = "margin-left: 5px;">
+													<ul>
+														<li style = "margin-right: 4.73px; margin-left: 3.5px;"><a href="#tabs-7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size = "1px;">Généralités</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+														<li style = "margin-right: 4.73px;"><a href="#tabs-8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size = "1px;">Statut</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+														<li style = "margin-right: 4.73px;"><a href="#tabs-9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size = "1px;">Questionnaire du Meeter</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+														<li><a href="#tabs-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size = "1px;">Précisions</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+													</ul>
+													<div id="tabs-7" style = "min-height: 240px;">
+														<p>a</p>
+													</div>
+													<div id="tabs-8" style = "min-height: 240px;">
+														<p>b</p>
+													</div>
+													<div id="tabs-9" style = "min-height: 240px;">
+														<p>c</p>
+													</div>
+													<div id="tabs-10" style = "min-height: 240px;">
+														<p>d</p>
+													</div>
+												</div>
+											</center>
+										</td>
+									</tr>
+								</table>
+							</p>
+						</center>
+					</div>
+					<div id="tabs-2" style = "min-height: 283px;">
+						<center>
+							<p>
+								<table border = "0" width = "807px">
+								</table>e
+							</p>
+						</center>
+					</div>
+					<div id="tabs-3" style = "min-height: 283px;">
+						<center>
+							<p>
+								<table border = "0" width = "807px">
+								</table>d
+							</p>
+						</center>
+					</div>
+					<div id="tabs-4" style = "min-height: 283px;">
+						<center>
+							<p>
+								<table border = "0" width = "807px">
+								</table>c
+							</p>
+						</center>
+					</div>
+					<div id="tabs-5" style = "min-height: 283px;">
+						<center>
+							<p>
+								<table border = "0" width = "807px">
+								</table>b
+							</p>
+						</center>
+					</div>
+					<div id="tabs-6" style = "min-height: 283px;">
+						<center>
+							<p>
+								<table border = "0" width = "807px">
+								</table>a
+							</p>
+						</center>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+{% endblock %}

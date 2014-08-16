@@ -1,0 +1,7 @@
+parameters:
+#    meetchatandplay_profil.example.class: meetchatandplay\ProfilBundle\Example
+
+services:
+#    meetchatandplay_profil.example:
+#        class: %meetchatandplay_profil.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
